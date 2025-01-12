@@ -8,6 +8,10 @@ main{
     flex-wrap: wrap;
 }
 
+#generator{
+    font-weight: bold;
+}
+
 .background{
     top: 80px;
     left: 0px;
