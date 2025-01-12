@@ -80,3 +80,25 @@ form{
     display: flex;
     white-space: nowrap;
 }
+
+.qrcode-size{
+    width: 600px;
+    height: 600px;
+    border: 4px solid black;
+    border-radius: 36px;
+}
+
+
+.button-load{
+    width: 257.02px;
+    height: 83.27px;
+    text-decoration: none;
+    color: white;
+}
+
+.qrcode-and-button{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}

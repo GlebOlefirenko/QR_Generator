@@ -12,40 +12,48 @@
 
 {% block content %}
     <img src="{% static 'generator_qr/img/background_gen_qr.png' %}" alt="" class = "background">
-    <p class = "header-title">Create your own QR-Code!</p>       
-    <img src = "{% static 'generator_qr/img/qr-fon.png' %}" alt="" class = "qr-size">
-    <form action="" class = "settings-qrcode">
+    <p class = "header-title">Create your own QR-Code!</p>  
+    <div class = "qrcode-and-button">
+    {% if Qrcode %}
+        <img src = "{{ Qrcode.path_qrcode.url }}" alt = "no image" class = "qrcode-size">
+        <button class = "button-load" ><a href = "{{ Qrcode.path_qrcode.url }}" download class = "button-load">Download</a></button>
+    {% else %}
+        <img src = "{% static 'generator_qr/img/qr-fon.png' %}" alt="">
+    {% endif %} 
+
+    </div>
+    <form action=""  method = "post" class = "settings-qrcode">
         {% csrf_token %}
         <div class = "input">
             <p class = "p-style">Name:</p>
-            <input type="text" placeholder = "Your QR-Code name..." class = "input-size">
+            <input type="text" name = "name" placeholder = "Your QR-Code name..." class = "input-size">
         </div>
 
         <div class = "input">
             <p class = "p-style">Size:</p>
-            <input type="text" placeholder = "Your QR-Code size..." class = "input-size">
+            <input type = "number" min = "1" max = "40" name = "size" placeholder = "Your QR-Code size..." class = "input-size">
         </div>
 
         <div class = "input">
             <p class = "p-style-color">Color:</p>
             <div class="custom-color-picker" id="color-preview"></div>
-            <input type="color"  class = "input-color" hidden>
+            <input type="color" name = "color" class = "input-color" hidden>
         </div>
 
         <div class = "input input-file1">
             <button class = "button-choose" onclick = "document.querySelector('.input-file').click()">Choose file</button>
             <p class = "p-style" id = "text-file">File is not selected</p>
-            <input type="file" accept="image" class = "input-file">
+            <input type="file" name = "image" accept="image" class = "input-file">
         </div>
 
         <div class = "input">
             <p class = "p-style">Form:</p>
-            <input type="text" placeholder = "Your QR-Code form..." class = "input-size">
+            <input type="text" name = "form"  placeholder = "Your QR-Code form..." class = "input-size">
         </div>
 
         <div class = "input">
             <p class = "p-style">Link:</p>
-            <input type="text" placeholder = "Your QR-Code link..." class = "input-size">
+            <input type="text" name = "data" placeholder = "Your QR-Code link..." class = "input-size">
         </div>
 
         <button class = "input">Generate</button>
